@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<title>南小瓜 — 手工南瓜豆豉 · 南瓜干</title>
+<meta name="description" content="精选优质南瓜，配以秘制豆豉，传统工艺慢火细作。咸香适口，回味无穷，无添加纯天然，绿色健康零食新选择。">
+<meta name="keywords" content="南瓜豆豉,南瓜干,手工零食,传统工艺,健康零食,家乡味道">
+<!-- Open Graph for WeChat / Facebook sharing preview -->
+<meta property="og:title" content="南小瓜 — 手工南瓜豆豉 · 南瓜干">
+<meta property="og:description" content="精选优质南瓜，配以秘制豆豉，传统工艺慢火细作。咸香适口，回味无穷。">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="南小瓜">
+<meta property="og:locale" content="zh_CN">
+<!-- WeChat specific -->
+<meta name="wechat:title" content="南小瓜 — 手工南瓜豆豉 · 南瓜干">
+<meta name="wechat:description" content="匠心手作南瓜豆豉与南瓜干，零添加纯天然，品尝地道家乡味道。">
+<meta itemprop="name" content="南小瓜 — 手工南瓜豆豉 · 南瓜干">
+<meta itemprop="description" content="匠心手作南瓜豆豉与南瓜干，零添加纯天然，品尝地道家乡味道。">
+<style>
+/* ===== Reset & Base ===== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --orange: #E87722;
+  --orange-light: #F4A460;
+  --brown: #5C3D2E;
+  --brown-dark: #2C1810;
+  --cream: #FFF8F0;
+  --warm-white: #FFFDF7;
+  --gold: #D4A017;
+  --green: #4A7C3F;
+  --shadow: 0 4px 24px rgba(92,61,46,0.12);
+  --shadow-lg: 0 12px 48px rgba(92,61,46,0.18);
+  --radius: 16px;
+  --radius-sm: 10px;
+  --transition: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', system-ui, sans-serif;
+  background: var(--warm-white);
+  color: var(--brown);
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+.container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+/* ===== Navbar ===== */
+.navbar {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  padding: 16px 0;
+  transition: var(--transition);
+}
+.navbar.scrolled {
+  background: rgba(255,253,247,0.96);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+  padding: 10px 0;
+}
+.navbar .container {
+  display: flex; align-items: center; justify-content: space-between;
+}
+.logo {
+  font-size: 1.5rem; font-weight: 800; color: var(--orange);
+  text-decoration: none; display: flex; align-items: center; gap: 8px;
+}
+.logo-icon { font-size: 1.8rem; animation: bounce 2s infinite; }
+@keyframes bounce {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+.nav-links { display: flex; list-style: none; gap: 32px; align-items: center; }
+.nav-links a {
+  text-decoration: none; color: var(--brown); font-weight: 600; font-size: 0.95rem;
+  transition: color 0.2s; position: relative;
+}
+.nav-links a::after {
+  content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 2px;
+  background: var(--orange); transition: width 0.3s;
+}
+.nav-links a:hover { color: var(--orange); }
+.nav-links a:hover::after { width: 100%; }
+.nav-cta {
+  background: var(--orange); color: #fff !important; padding: 10px 22px;
+  border-radius: 50px; transition: var(--transition) !important;
+}
+.nav-cta:hover { background: #d0651e; transform: translateY(-2px); box-shadow: 0 4px 16px rgba(232,119,34,0.4); }
+.nav-cta::after { display: none !important; }
+
+.hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; z-index: 1001; }
+.hamburger span { width: 26px; height: 3px; background: var(--brown); border-radius: 3px; transition: var(--transition); }
+.hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px,6px); }
+.hamburger.active span:nth-child(2) { opacity: 0; }
+.hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px,-6px); }
+
+/* ===== Hero ===== */
+.hero {
+  min-height: 100vh; display: flex; align-items: center;
+  background: linear-gradient(160deg, #FFF8F0 0%, #FFE8CC 40%, #FFD4A3 100%);
+  position: relative; overflow: hidden; padding: 120px 0 80px;
+}
+.hero::before {
+  content: ''; position: absolute; top: -120px; right: -120px;
+  width: 500px; height: 500px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(232,119,34,0.12) 0%, transparent 70%);
+  animation: float 8s ease-in-out infinite;
+}
+.hero::after {
+  content: ''; position: absolute; bottom: -60px; left: -80px;
+  width: 350px; height: 350px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(244,164,96,0.10) 0%, transparent 70%);
+  animation: float 6s ease-in-out infinite reverse;
+}
+@keyframes float {
+  0%,100% { transform: translate(0,0) scale(1); }
+  33% { transform: translate(20px,-20px) scale(1.05); }
+  66% { transform: translate(-10px,15px) scale(0.97); }
+}
+.hero-content { position: relative; z-index: 2; max-width: 600px; }
+.hero-badge {
+  display: inline-block; background: rgba(232,119,34,0.12); color: var(--orange);
+  padding: 8px 20px; border-radius: 50px; font-weight: 700; font-size: 0.9rem;
+  margin-bottom: 24px; letter-spacing: 1px;
+}
+.hero h1 {
+  font-size: clamp(2.5rem, 6vw, 4rem); font-weight: 900; line-height: 1.15;
+  color: var(--brown-dark); margin-bottom: 20px;
+}
+.hero h1 .highlight {
+  background: linear-gradient(135deg, var(--orange), var(--gold));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.hero p {
+  font-size: 1.15rem; color: #6B4F3A; margin-bottom: 36px; max-width: 480px;
+}
+.hero-buttons { display: flex; gap: 16px; flex-wrap: wrap; }
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 14px 32px; border-radius: 50px; font-size: 1rem; font-weight: 700;
+  text-decoration: none; cursor: pointer; border: none;
+  transition: var(--transition); position: relative; overflow: hidden;
+}
+.btn-primary {
+  background: linear-gradient(135deg, var(--orange), #d0651e);
+  color: #fff; box-shadow: 0 6px 24px rgba(232,119,34,0.35);
+}
+.btn-primary:hover { transform: translateY(-3px); box-shadow: 0 10px 32px rgba(232,119,34,0.5); }
+.btn-outline {
+  background: transparent; color: var(--brown); border: 2px solid var(--brown);
+}
+.btn-outline:hover { background: var(--brown); color: #fff; transform: translateY(-3px); }
+
+/* Floating pumpkins */
+.floating-pumpkins { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1; }
+.pumpkin-particle {
+  position: absolute; font-size: 2rem; opacity: 0.3;
+  animation: floatParticle linear infinite;
+}
+@keyframes floatParticle {
+  0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+  10% { opacity: 0.35; }
+  90% { opacity: 0.35; }
+  100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+}
+
+/* ===== Section Common ===== */
+.section { padding: 100px 0; }
+.section-header { text-align: center; margin-bottom: 64px; }
+.section-tag {
+  display: inline-block; background: rgba(232,119,34,0.1); color: var(--orange);
+  padding: 6px 18px; border-radius: 50px; font-weight: 700; font-size: 0.85rem;
+  letter-spacing: 1px; margin-bottom: 16px;
+}
+.section-header h2 { font-size: clamp(1.8rem, 4vw, 2.6rem); font-weight: 800; color: var(--brown-dark); margin-bottom: 12px; }
+.section-header p { color: #6B4F3A; max-width: 560px; margin: 0 auto; font-size: 1.05rem; }
+
+/* ===== Reveal animation ===== */
+.reveal {
+  opacity: 0; transform: translateY(40px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+
+/* ===== Products ===== */
+.products { background: #fff; }
+.product-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 32px; }
+.product-card {
+  background: var(--warm-white); border-radius: var(--radius);
+  padding: 40px 32px; text-align: center;
+  box-shadow: var(--shadow); transition: var(--transition);
+  cursor: pointer; position: relative; overflow: hidden;
+  border: 2px solid transparent;
+}
+.product-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--orange-light);
+}
+.product-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
+  background: linear-gradient(90deg, var(--orange), var(--gold));
+  transform: scaleX(0); transition: transform 0.4s;
+}
+.product-card:hover::before { transform: scaleX(1); }
+.product-emoji { font-size: 5rem; display: block; margin-bottom: 20px; animation: bounce 2s infinite; }
+.product-card:nth-child(2) .product-emoji { animation-delay: 0.3s; }
+.product-card:nth-child(3) .product-emoji { animation-delay: 0.6s; }
+.product-card h3 { font-size: 1.4rem; font-weight: 800; margin-bottom: 10px; color: var(--brown-dark); }
+.product-card .price { font-size: 1.6rem; font-weight: 900; color: var(--orange); margin: 12px 0; }
+.product-card p { color: #6B4F3A; font-size: 0.95rem; margin-bottom: 20px; }
+.product-card .btn { font-size: 0.9rem; padding: 10px 24px; }
+.product-badge {
+  position: absolute; top: 16px; right: 16px;
+  background: var(--orange); color: #fff; padding: 4px 14px;
+  border-radius: 50px; font-size: 0.8rem; font-weight: 700;
+}
+
+/* ===== Features ===== */
+.features { background: var(--cream); }
+.feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 28px; }
+.feature-card {
+  background: #fff; padding: 36px 28px; border-radius: var(--radius);
+  box-shadow: var(--shadow); text-align: center; transition: var(--transition);
+}
+.feature-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
+.feature-icon {
+  width: 72px; height: 72px; margin: 0 auto 20px;
+  background: linear-gradient(135deg, rgba(232,119,34,0.1), rgba(244,164,96,0.1));
+  border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  font-size: 2.2rem;
+}
+.feature-card h3 { font-size: 1.15rem; font-weight: 800; margin-bottom: 8px; color: var(--brown-dark); }
+.feature-card p { color: #6B4F3A; font-size: 0.9rem; }
+
+/* ===== Stats ===== */
+.stats {
+  background: linear-gradient(135deg, var(--brown-dark), #3D2216);
+  color: #fff; padding: 60px 0;
+}
+.stats-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 32px;
+  text-align: center;
+}
+.stat-item .stat-number { font-size: 2.8rem; font-weight: 900; color: var(--orange-light); }
+.stat-item .stat-label { font-size: 0.95rem; opacity: 0.85; margin-top: 4px; }
+
+/* ===== Process ===== */
+.process-steps { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; }
+.process-step {
+  flex: 1; min-width: 200px; max-width: 260px; text-align: center;
+  padding: 32px 20px; background: #fff; border-radius: var(--radius);
+  box-shadow: var(--shadow); position: relative; transition: var(--transition);
+}
+.process-step:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+.step-number {
+  width: 48px; height: 48px; margin: 0 auto 16px;
+  background: var(--orange); color: #fff; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.3rem; font-weight: 900;
+}
+.process-step h3 { font-weight: 800; margin-bottom: 6px; color: var(--brown-dark); font-size: 1.05rem; }
+.process-step p { font-size: 0.85rem; color: #6B4F3A; }
+
+/* ===== Testimonials ===== */
+.testimonials { background: #fff; }
+.testimonial-carousel { max-width: 700px; margin: 0 auto; position: relative; overflow: hidden; }
+.testimonial-track { display: flex; transition: transform 0.5s ease; }
+.testimonial-card {
+  min-width: 100%; padding: 40px; text-align: center;
+}
+.testimonial-avatar {
+  width: 72px; height: 72px; margin: 0 auto 16px;
+  border-radius: 50%; background: linear-gradient(135deg, var(--orange-light), var(--orange));
+  display: flex; align-items: center; justify-content: center;
+  font-size: 2rem; color: #fff;
+}
+.testimonial-stars { color: var(--gold); font-size: 1.2rem; margin-bottom: 16px; }
+.testimonial-text { font-size: 1.1rem; color: #5C3D2E; font-style: italic; margin-bottom: 16px; line-height: 1.8; }
+.testimonial-name { font-weight: 800; color: var(--brown-dark); }
+.testimonial-role { font-size: 0.85rem; color: #888; }
+.carousel-btns { display: flex; justify-content: center; gap: 12px; margin-top: 24px; }
+.carousel-btn {
+  width: 44px; height: 44px; border-radius: 50%; border: 2px solid var(--orange);
+  background: transparent; cursor: pointer; font-size: 1.2rem; color: var(--orange);
+  transition: var(--transition); display: flex; align-items: center; justify-content: center;
+}
+.carousel-btn:hover { background: var(--orange); color: #fff; }
+.carousel-dots { display: flex; justify-content: center; gap: 8px; margin-top: 16px; }
+.carousel-dot {
+  width: 10px; height: 10px; border-radius: 50%; background: #ddd;
+  border: none; cursor: pointer; transition: var(--transition);
+}
+.carousel-dot.active { background: var(--orange); width: 28px; border-radius: 10px; }
+
+/* ===== FAQ ===== */
+.faq { background: var(--cream); }
+.faq-list { max-width: 720px; margin: 0 auto; }
+.faq-item {
+  background: #fff; border-radius: var(--radius-sm); margin-bottom: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04); overflow: hidden;
+}
+.faq-question {
+  width: 100%; padding: 20px 24px; text-align: left; border: none; background: none;
+  font-size: 1rem; font-weight: 700; color: var(--brown-dark); cursor: pointer;
+  display: flex; justify-content: space-between; align-items: center;
+  transition: color 0.2s;
+}
+.faq-question:hover { color: var(--orange); }
+.faq-icon { font-size: 1.4rem; transition: transform 0.3s; color: var(--orange); }
+.faq-item.active .faq-icon { transform: rotate(45deg); }
+.faq-answer {
+  max-height: 0; overflow: hidden; transition: max-height 0.4s ease, padding 0.4s ease;
+  padding: 0 24px; color: #6B4F3A; font-size: 0.95rem; line-height: 1.8;
+}
+.faq-item.active .faq-answer { max-height: 300px; padding: 0 24px 20px; }
+
+/* ===== CTA Section ===== */
+.cta-section {
+  background: linear-gradient(160deg, #FFF8F0, #FFE0BB);
+  text-align: center; padding: 100px 24px;
+}
+.cta-section h2 { font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 900; color: var(--brown-dark); margin-bottom: 16px; }
+.cta-section p { color: #6B4F3A; margin-bottom: 32px; font-size: 1.1rem; }
+.cta-section .btn-primary { font-size: 1.1rem; padding: 16px 40px; }
+
+/* ===== Order Modal ===== */
+.modal-overlay {
+  position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 9999;
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; pointer-events: none; transition: opacity 0.3s;
+}
+.modal-overlay.active { opacity: 1; pointer-events: auto; }
+.modal {
+  background: #fff; border-radius: var(--radius); padding: 48px 36px;
+  max-width: 480px; width: 90%; position: relative;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.2); transform: translateY(20px);
+  transition: transform 0.3s;
+}
+.modal-overlay.active .modal { transform: translateY(0); }
+.modal-close {
+  position: absolute; top: 16px; right: 16px; width: 36px; height: 36px;
+  border-radius: 50%; border: none; background: #f5f5f5; cursor: pointer;
+  font-size: 1.2rem; display: flex; align-items: center; justify-content: center;
+  transition: var(--transition);
+}
+.modal-close:hover { background: #e0e0e0; }
+.modal h3 { font-size: 1.5rem; font-weight: 800; margin-bottom: 8px; color: var(--brown-dark); }
+.modal p { color: #6B4F3A; margin-bottom: 24px; font-size: 0.95rem; }
+.form-group { margin-bottom: 16px; }
+.form-group label { display: block; font-weight: 700; margin-bottom: 6px; color: var(--brown-dark); font-size: 0.9rem; }
+.form-group input, .form-group select, .form-group textarea {
+  width: 100%; padding: 12px 16px; border: 2px solid #e8e0d8; border-radius: var(--radius-sm);
+  font-size: 0.95rem; font-family: inherit; transition: border-color 0.2s;
+  background: var(--warm-white);
+}
+.form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+  outline: none; border-color: var(--orange);
+}
+.form-group textarea { resize: vertical; min-height: 80px; }
+.modal .btn-primary { width: 100%; justify-content: center; }
+
+/* Toast */
+.toast {
+  position: fixed; bottom: 32px; left: 50%; transform: translateX(-50%) translateY(100px);
+  background: var(--green); color: #fff; padding: 14px 28px; border-radius: 50px;
+  font-weight: 700; z-index: 99999; transition: transform 0.4s ease;
+  box-shadow: 0 8px 24px rgba(74,124,63,0.3);
+}
+.toast.show { transform: translateX(-50%) translateY(0); }
+
+/* ===== Footer ===== */
+.footer {
+  background: var(--brown-dark); color: rgba(255,255,255,0.7);
+  padding: 48px 0 24px; text-align: center;
+}
+.footer-logo { font-size: 1.5rem; font-weight: 800; color: var(--orange-light); margin-bottom: 16px; }
+.footer-links { display: flex; gap: 24px; justify-content: center; margin-bottom: 24px; flex-wrap: wrap; }
+.footer-links a { color: rgba(255,255,255,0.6); text-decoration: none; transition: color 0.2s; }
+.footer-links a:hover { color: var(--orange-light); }
+.footer p { font-size: 0.85rem; }
+
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+  .nav-links {
+    position: fixed; top: 0; right: -100%; width: 75%; height: 100vh;
+    background: rgba(255,253,247,0.99);
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
+    flex-direction: column; justify-content: center; gap: 28px;
+    transition: right 0.35s ease; box-shadow: -4px 0 30px rgba(0,0,0,0.1);
+    -webkit-overflow-scrolling: touch;
+  }
+  .nav-links.active { right: 0; }
+  .hamburger { display: flex; }
+  .hero { text-align: center; padding: 100px 0 60px; }
+  .hero-content { max-width: 100%; }
+  .hero p { max-width: 100%; }
+  .hero-buttons { justify-content: center; }
+  .product-grid { grid-template-columns: 1fr; }
+  .process-steps { flex-direction: column; align-items: center; }
+  .process-step { max-width: 100%; }
+}
+</style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar" id="navbar">
+  <div class="container">
+    <a href="#" class="logo"><span class="logo-icon">🎃</span> 南小瓜</a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#products" onclick="closeNav()">产品</a></li>
+      <li><a href="#features" onclick="closeNav()">特色</a></li>
+      <li><a href="#process" onclick="closeNav()">工艺</a></li>
+      <li><a href="#testimonials" onclick="closeNav()">口碑</a></li>
+      <li><a href="#" onclick="openModal();return false;" class="nav-cta">立即购买</a></li>
+    </ul>
+    <div class="hamburger" id="hamburger" onclick="toggleNav()">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero" id="hero">
+  <div class="floating-pumpkins" id="floatingPumpkins"></div>
+  <div class="container">
+    <div class="hero-content reveal">
+      <span class="hero-badge">🌟 传承百年工艺</span>
+      <h1>手工精制<br><span class="highlight">南瓜豆豉</span> · 南瓜干</h1>
+      <p>精选优质南瓜，配以秘制豆豉，传统工艺慢火细作。咸香适口，回味无穷，是您餐桌上的健康之选。</p>
+      <div class="hero-buttons">
+        <a href="#products" class="btn btn-primary">🛒 探索产品</a>
+        <button class="btn btn-outline" onclick="openModal()">📦 立即订购</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Products -->
+<section class="section products" id="products">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-tag">精选产品</span>
+      <h2>匠心手作，口口留香</h2>
+      <p>每一罐都是手工精心制作，无添加、纯天然，给您最地道的家乡味道。</p>
+    </div>
+    <div class="product-grid">
+      <div class="product-card reveal reveal-delay-1" onclick="openModal()">
+        <span class="product-badge">热卖</span>
+        <span class="product-emoji">🎃</span>
+        <h3>经典南瓜豆豉</h3>
+        <p>精选饱满黄豆，搭配新鲜南瓜，传统发酵工艺，酱香浓郁，回味悠长。</p>
+        <div class="price">¥38 <span style="font-size:0.7em;font-weight:400;color:#999;">/ 罐</span></div>
+        <span class="btn btn-primary">立即购买</span>
+      </div>
+      <div class="product-card reveal reveal-delay-2" onclick="openModal()">
+        <span class="product-badge">新品</span>
+        <span class="product-emoji">🍂</span>
+        <h3>原味南瓜干</h3>
+        <p>阳光自然晾晒，锁住南瓜天然甜味，口感软糯有嚼劲，健康零食新选择。</p>
+        <div class="price">¥28 <span style="font-size:0.7em;font-weight:400;color:#999;">/ 袋</span></div>
+        <span class="btn btn-primary">立即购买</span>
+      </div>
+      <div class="product-card reveal reveal-delay-3" onclick="openModal()">
+        <span class="product-badge">礼盒</span>
+        <span class="product-emoji">🎁</span>
+        <h3>臻选礼盒套装</h3>
+        <p>南瓜豆豉 ×2 + 南瓜干 ×2，精美礼盒包装，送礼自用两相宜。</p>
+        <div class="price">¥118 <span style="font-size:0.7em;font-weight:400;color:#999;">/ 套</span></div>
+        <span class="btn btn-primary">立即购买</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Features -->
+<section class="section features" id="features">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-tag">为什么选择我们</span>
+      <h2>好食材 · 好工艺 · 好味道</h2>
+      <p>每一口都是对品质的坚持，每一个细节都不将就。</p>
+    </div>
+    <div class="feature-grid">
+      <div class="feature-card reveal reveal-delay-1">
+        <div class="feature-icon">🌱</div>
+        <h3>天然原料</h3>
+        <p>选用自家种植的优质南瓜，无农药残留，绿色健康，吃得安心。</p>
+      </div>
+      <div class="feature-card reveal reveal-delay-1">
+        <div class="feature-icon">🧪</div>
+        <h3>零添加剂</h3>
+        <p>不添加任何防腐剂、色素，保留食材本真味道，老人小孩都放心。</p>
+      </div>
+      <div class="feature-card reveal reveal-delay-2">
+        <div class="feature-icon">🔥</div>
+        <h3>传统工艺</h3>
+        <p>沿用百年家传配方与手工技艺，每一道工序都倾注匠心。</p>
+      </div>
+      <div class="feature-card reveal reveal-delay-2">
+        <div class="feature-icon">📦</div>
+        <h3>新鲜直达</h3>
+        <p>下单现做，真空包装锁鲜，全国顺丰包邮，新鲜送到家。</p>
+      </div>
+      <div class="feature-card reveal reveal-delay-3">
+        <div class="feature-icon">💯</div>
+        <h3>满意保证</h3>
+        <p>不满意包退换，我们对自己的产品有100%的信心。</p>
+      </div>
+      <div class="feature-card reveal reveal-delay-3">
+        <div class="feature-icon">❤️</div>
+        <h3>家乡味道</h3>
+        <p>地道风味，唤醒记忆中的味道，是您餐桌上的温暖陪伴。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Stats -->
+<section class="stats" id="stats">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat-item">
+        <div class="stat-number"><span class="counter" data-target="15">0</span>+</div>
+        <div class="stat-label">年传承工艺</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number"><span class="counter" data-target="5000">0</span>+</div>
+        <div class="stat-label">满意客户</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number"><span class="counter" data-target="98">0</span>%</div>
+        <div class="stat-label">好评率</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number"><span class="counter" data-target="30000">0</span>+</div>
+        <div class="stat-label">累计售出罐数</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Process -->
+<section class="section" id="process">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-tag">制作工艺</span>
+      <h2>从田间到餐桌的匠心之旅</h2>
+      <p>每一罐南瓜豆豉都要经历多道工序，才能成就独特风味。</p>
+    </div>
+    <div class="process-steps">
+      <div class="process-step reveal reveal-delay-1">
+        <div class="step-number">1</div>
+        <h3>🌾 精选原料</h3>
+        <p>挑选当季最饱满的南瓜与优质黄豆，从源头把控品质。</p>
+      </div>
+      <div class="process-step reveal reveal-delay-2">
+        <div class="step-number">2</div>
+        <h3>🔪 手工切制</h3>
+        <p>手工切块均匀，确保每一块南瓜都能充分入味。</p>
+      </div>
+      <div class="process-step reveal reveal-delay-3">
+        <div class="step-number">3</div>
+        <h3>☀️ 自然晾晒</h3>
+        <p>阳光自然晾晒至恰到好处的干湿度，保留天然甜味。</p>
+      </div>
+      <div class="process-step reveal reveal-delay-3">
+        <div class="step-number">4</div>
+        <h3>🫙 秘制发酵</h3>
+        <p>入缸密封，在恒温下缓慢发酵，时间酝酿出醇厚风味。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Testimonials -->
+<section class="section testimonials" id="testimonials">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-tag">客户口碑</span>
+      <h2>吃过的都说好</h2>
+      <p>来自全国各地的真实评价，是我们最大的动力。</p>
+    </div>
+    <div class="testimonial-carousel reveal" id="testimonialCarousel">
+      <div class="testimonial-track" id="testimonialTrack">
+        <div class="testimonial-card">
+          <div class="testimonial-avatar">👩</div>
+          <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+          <p class="testimonial-text">"第一次吃到这么好吃的南瓜豆豉！拌饭、炒菜都绝了，家里的老人小孩都爱吃，已经回购好几次了。"</p>
+          <div class="testimonial-name">李女士</div>
+          <div class="testimonial-role">老顾客 · 广东</div>
+        </div>
+        <div class="testimonial-card">
+          <div class="testimonial-avatar">👨</div>
+          <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+          <p class="testimonial-text">"南瓜干超级好吃，软糯香甜，不是那种硬邦邦的，追剧的时候吃根本停不下来！礼盒送朋友也很有面子。"</p>
+          <div class="testimonial-name">张先生</div>
+          <div class="testimonial-role">回购3次 · 湖南</div>
+        </div>
+        <div class="testimonial-card">
+          <div class="testimonial-avatar">👩‍🦰</div>
+          <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+          <p class="testimonial-text">"零添加这个太重要了，孩子吃着放心。味道是小时候奶奶做的那个味，太怀念了，感谢你们保留了这份传统。"</p>
+          <div class="testimonial-name">王女士</div>
+          <div class="testimonial-role">宝妈 · 浙江</div>
+        </div>
+      </div>
+      <div class="carousel-btns">
+        <button class="carousel-btn" onclick="prevTestimonial()">←</button>
+        <button class="carousel-btn" onclick="nextTestimonial()">→</button>
+      </div>
+      <div class="carousel-dots" id="carouselDots"></div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section faq" id="faq">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-tag">常见问题</span>
+      <h2>您可能想了解</h2>
+    </div>
+    <div class="faq-list reveal">
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          南瓜豆豉怎么保存？保质期多久？
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">未开封可常温阴凉处保存12个月。开封后请放入冰箱冷藏，建议在1个月内食用完毕，以保持最佳风味。</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          南瓜干可以直接吃吗？
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">当然可以！南瓜干开袋即食，也可以泡水后煮粥、炖汤，风味各异。追剧零食、办公室小食都是不错的选择。</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          发货用什么快递？多久能到？
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">默认顺丰包邮发货，全国大部分地区2-4天送达。偏远地区可能需要5-7天。下单后48小时内发货（节假日顺延）。</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          可以定制礼盒吗？企业团购有优惠吗？
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">支持企业团购与礼盒定制！10份以上可享团购价，企业定制logo请通过购买弹窗留言或联系客服。量大价优，欢迎咨询。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="reveal">
+    <h2>品尝地道家乡味 🎃</h2>
+    <p>手工精制南瓜豆豉与南瓜干，舌尖上的温暖记忆。<br>现在下单，新客享首单9折优惠！</p>
+    <button class="btn btn-primary" onclick="openModal()">🛒 马上抢购</button>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-logo">🎃 南小瓜</div>
+    <div class="footer-links">
+      <a href="#products">产品</a>
+      <a href="#features">特色</a>
+      <a href="#process">工艺</a>
+      <a href="#testimonials">口碑</a>
+      <a href="#faq">常见问题</a>
+    </div>
+    <p>© 2026 南小瓜 · 手工南瓜豆豉 & 南瓜干 · 保留所有权利</p>
+  </div>
+</footer>
+
+<!-- Order Modal -->
+<div class="modal-overlay" id="modalOverlay" onclick="closeModalOutside(event)">
+  <div class="modal" id="modal">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <h3>📦 立即订购</h3>
+    <p>填写信息，我们会尽快联系您确认订单。</p>
+    <form id="orderForm" onsubmit="submitOrder(event)">
+      <div class="form-group">
+        <label>选择产品</label>
+        <select id="productSelect" required>
+          <option value="">请选择产品</option>
+          <option value="经典南瓜豆豉">🎃 经典南瓜豆豉 — ¥38/罐</option>
+          <option value="原味南瓜干">🍂 原味南瓜干 — ¥28/袋</option>
+          <option value="臻选礼盒套装">🎁 臻选礼盒套装 — ¥118/套</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>数量</label>
+        <input type="number" id="quantity" min="1" value="1" required>
+      </div>
+      <div class="form-group">
+        <label>您的姓名</label>
+        <input type="text" id="customerName" placeholder="请输入姓名" required>
+      </div>
+      <div class="form-group">
+        <label>手机号码</label>
+        <input type="tel" id="customerPhone" placeholder="请输入手机号" required>
+      </div>
+      <div class="form-group">
+        <label>收货地址</label>
+        <input type="text" id="customerAddress" placeholder="请输入收货地址" required>
+      </div>
+      <div class="form-group">
+        <label>备注留言</label>
+        <textarea id="customerNote" placeholder="有什么特别需求可以告诉我们..."></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary">✅ 提交订单</button>
+    </form>
+  </div>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+<script>
+/* ===== Particles ===== */
+(function() {
+  const container = document.getElementById('floatingPumpkins');
+  const emojis = ['🎃','🍂','✨','🌟','🍁','🧡'];
+  for (let i = 0; i < 18; i++) {
+    const el = document.createElement('span');
+    el.className = 'pumpkin-particle';
+    el.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+    el.style.left = Math.random() * 100 + '%';
+    el.style.fontSize = (1.2 + Math.random() * 2.5) + 'rem';
+    el.style.animationDuration = (8 + Math.random() * 16) + 's';
+    el.style.animationDelay = Math.random() * 12 + 's';
+    container.appendChild(el);
+  }
+})();
+
+/* ===== Navbar scroll ===== */
+window.addEventListener('scroll', () => {
+  document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
+});
+
+/* ===== Mobile nav ===== */
+function toggleNav() {
+  document.getElementById('navLinks').classList.toggle('active');
+  document.getElementById('hamburger').classList.toggle('active');
+}
+function closeNav() {
+  document.getElementById('navLinks').classList.remove('active');
+  document.getElementById('hamburger').classList.remove('active');
+}
+
+/* ===== Scroll reveal ===== */
+(function() {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+})();
+
+/* ===== Counter animation ===== */
+(function() {
+  const counterObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      const counter = entry.target;
+      const target = +counter.dataset.target;
+      const duration = 2000;
+      const start = performance.now();
+      function update(now) {
+        const elapsed = now - start;
+        const progress = Math.min(elapsed / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        counter.textContent = Math.floor(eased * target);
+        if (progress < 1) requestAnimationFrame(update);
+        else counter.textContent = target;
+      }
+      requestAnimationFrame(update);
+      counterObserver.unobserve(counter);
+    });
+  }, { threshold: 0.5 });
+  document.querySelectorAll('.counter').forEach(el => counterObserver.observe(el));
+})();
+
+/* ===== Testimonial carousel ===== */
+let currentTestimonial = 0;
+const totalTestimonials = 3;
+const track = document.getElementById('testimonialTrack');
+
+function buildDots() {
+  const dotsContainer = document.getElementById('carouselDots');
+  dotsContainer.innerHTML = '';
+  for (let i = 0; i < totalTestimonials; i++) {
+    const dot = document.createElement('button');
+    dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+    dot.onclick = () => goToTestimonial(i);
+    dotsContainer.appendChild(dot);
+  }
+}
+buildDots();
+
+function updateCarousel() {
+  track.style.transform = `translateX(-${currentTestimonial * 100}%)`;
+  document.querySelectorAll('.carousel-dot').forEach((d, i) => {
+    d.classList.toggle('active', i === currentTestimonial);
+  });
+}
+
+function nextTestimonial() {
+  currentTestimonial = (currentTestimonial + 1) % totalTestimonials;
+  updateCarousel();
+}
+
+function prevTestimonial() {
+  currentTestimonial = (currentTestimonial - 1 + totalTestimonials) % totalTestimonials;
+  updateCarousel();
+}
+
+function goToTestimonial(index) {
+  currentTestimonial = index;
+  updateCarousel();
+}
+
+// Auto-rotate
+setInterval(() => { nextTestimonial(); }, 5000);
+
+/* ===== FAQ toggle ===== */
+function toggleFaq(btn) {
+  const item = btn.parentElement;
+  const wasActive = item.classList.contains('active');
+  // Close all
+  document.querySelectorAll('.faq-item').forEach(el => el.classList.remove('active'));
+  if (!wasActive) item.classList.add('active');
+}
+
+/* ===== Modal ===== */
+function openModal() {
+  document.getElementById('modalOverlay').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  document.getElementById('modalOverlay').classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+function closeModalOutside(e) {
+  if (e.target === document.getElementById('modalOverlay')) closeModal();
+}
+
+/* ===== Order submit ===== */
+function submitOrder(e) {
+  e.preventDefault();
+  const product = document.getElementById('productSelect').value;
+  const quantity = document.getElementById('quantity').value;
+  const name = document.getElementById('customerName').value;
+  const phone = document.getElementById('customerPhone').value;
+  const address = document.getElementById('customerAddress').value;
+  const note = document.getElementById('customerNote').value;
+
+  // Show toast
+  const toast = document.getElementById('toast');
+  toast.textContent = '✅ 订单已提交！我们会尽快联系您确认。';
+  toast.classList.add('show');
+  setTimeout(() => toast.classList.remove('show'), 3500);
+
+  closeModal();
+  e.target.reset();
+}
+</script>
+</body>
+</html>
