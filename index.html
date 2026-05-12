@@ -409,6 +409,29 @@ body {
   .process-steps { flex-direction: column; align-items: center; }
   .process-step { max-width: 100%; }
 }
+/* ===== Admin Panel ===== */
+.admin-panel { display: none; background: var(--cream); min-height: 100vh; padding: 40px 24px; }
+.admin-panel h1 { font-size: 1.8rem; font-weight: 900; color: var(--brown-dark); margin-bottom: 8px; }
+.admin-panel .admin-subtitle { color: #888; margin-bottom: 24px; font-size: 0.9rem; }
+.admin-toolbar { display: flex; gap: 12px; margin-bottom: 20px; flex-wrap: wrap; align-items: center; }
+.admin-toolbar .btn { padding: 10px 20px; font-size: 0.85rem; }
+.btn-export { background: var(--green); color: #fff; }
+.btn-export:hover { background: #3d6b33; }
+.btn-danger { background: #e74c3c; color: #fff; }
+.btn-danger:hover { background: #c0392b; }
+.admin-table-wrap { overflow-x: auto; background: #fff; border-radius: var(--radius); box-shadow: var(--shadow); }
+.admin-table { width: 100%; border-collapse: collapse; min-width: 800px; font-size: 0.9rem; }
+.admin-table th { background: var(--brown-dark); color: #fff; padding: 14px 12px; text-align: left; font-weight: 700; white-space: nowrap; }
+.admin-table td { padding: 12px; border-bottom: 1px solid #f0ebe0; color: var(--brown); }
+.admin-table tr:hover td { background: #FFF8F0; }
+.del-btn { background: none; border: 1px solid #e74c3c; color: #e74c3c; padding: 4px 12px; border-radius: 4px; cursor: pointer; font-size: 0.8rem; transition: all 0.2s; }
+.del-btn:hover { background: #e74c3c; color: #fff; }
+.admin-empty { display: none; text-align: center; padding: 60px 20px; color: #999; }
+.admin-empty span { font-size: 4rem; display: block; margin-bottom: 16px; }
+.admin-back { display: inline-block; margin-bottom: 24px; color: var(--brown); text-decoration: none; font-weight: 600; font-size: 0.9rem; }
+.admin-back:hover { color: var(--orange); }
+.badge-order-count { background: var(--orange); color: #fff; padding: 4px 12px; border-radius: 50px; font-size: 0.85rem; font-weight: 700; margin-left: 12px; }
+
 </style>
 </head>
 <body>
@@ -684,7 +707,7 @@ body {
       <a href="#testimonials">口碑</a>
       <a href="#faq">常见问题</a>
     </div>
-    <p>© 2026 南小瓜 · 手工南瓜豆豉 & 南瓜干 · 保留所有权利</p>
+    <p>© 2026 南小瓜 · 手工南瓜豆豉 & 南瓜干 · 保留所有权利 · <a href="?admin" style="color:rgba(255,255,255,0.3);text-decoration:none;">管理</a></p>
   </div>
 </footer>
 
@@ -726,6 +749,41 @@ body {
       </div>
       <button type="submit" class="btn btn-primary">✅ 提交订单</button>
     </form>
+  </div>
+</div>
+
+<!-- Admin Panel -->
+<div class="admin-panel" id="adminPanel">
+  <div class="container">
+    <a href="/pumpkin-site" class="admin-back">← 返回首页</a>
+    <h1>📋 订单管理 <span class="badge-order-count" id="orderCount">0 条</span></h1>
+    <p class="admin-subtitle">所有订单数据存储在本地浏览器中</p>
+    <div class="admin-toolbar">
+      <button class="btn btn-export" onclick="exportOrders()">📥 导出 CSV</button>
+      <button class="btn btn-danger" onclick="clearAllOrders()">🗑 清空所有</button>
+      <span style="margin-left:auto;color:#888;font-size:0.8rem;">提示：在网址后加 ?admin 即可进入此页面</span>
+    </div>
+    <div class="admin-table-wrap">
+      <table class="admin-table">
+        <thead>
+          <tr>
+            <th>下单时间</th>
+            <th>产品</th>
+            <th>数量</th>
+            <th>姓名</th>
+            <th>电话</th>
+            <th>地址</th>
+            <th>备注</th>
+            <th>操作</th>
+          </tr>
+        </thead>
+        <tbody id="adminTableBody"></tbody>
+      </table>
+      <div class="admin-empty" id="adminEmpty">
+        <span>📭</span>
+        <p>暂无订单</p>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -869,12 +927,21 @@ function closeModalOutside(e) {
 /* ===== Order submit ===== */
 function submitOrder(e) {
   e.preventDefault();
-  const product = document.getElementById('productSelect').value;
-  const quantity = document.getElementById('quantity').value;
-  const name = document.getElementById('customerName').value;
-  const phone = document.getElementById('customerPhone').value;
-  const address = document.getElementById('customerAddress').value;
-  const note = document.getElementById('customerNote').value;
+  const order = {
+    id: Date.now(),
+    time: new Date().toLocaleString('zh-CN'),
+    product: document.getElementById('productSelect').value,
+    quantity: document.getElementById('quantity').value,
+    name: document.getElementById('customerName').value,
+    phone: document.getElementById('customerPhone').value,
+    address: document.getElementById('customerAddress').value,
+    note: document.getElementById('customerNote').value || '无'
+  };
+
+  // Save to localStorage
+  const orders = JSON.parse(localStorage.getItem('pumpkin_orders') || '[]');
+  orders.unshift(order);
+  localStorage.setItem('pumpkin_orders', JSON.stringify(orders));
 
   // Show toast
   const toast = document.getElementById('toast');
@@ -884,6 +951,67 @@ function submitOrder(e) {
 
   closeModal();
   e.target.reset();
+}
+
+/* ===== Admin Panel ===== */
+(function() {
+  if (window.location.search !== '?admin') return;
+  // Hide main content, show admin
+  document.querySelectorAll('.navbar,.hero,.section,.cta-section,.footer,#stats').forEach(el => el.style.display = 'none');
+  document.getElementById('adminPanel').style.display = 'block';
+  loadAdminOrders();
+})();
+
+function loadAdminOrders() {
+  const orders = JSON.parse(localStorage.getItem('pumpkin_orders') || '[]');
+  document.getElementById('orderCount').textContent = orders.length + ' 条';
+  const tbody = document.getElementById('adminTableBody');
+  const empty = document.getElementById('adminEmpty');
+  if (orders.length === 0) {
+    tbody.innerHTML = '';
+    empty.style.display = 'block';
+    return;
+  }
+  empty.style.display = 'none';
+  tbody.innerHTML = orders.map((o, i) => `
+    <tr>
+      <td>${o.time}</td>
+      <td>${o.product}</td>
+      <td>${o.quantity}</td>
+      <td>${o.name}</td>
+      <td>${o.phone}</td>
+      <td>${o.address}</td>
+      <td>${o.note}</td>
+      <td><button class="del-btn" onclick="deleteOrder(${o.id})">删除</button></td>
+    </tr>
+  `).join('');
+}
+
+function deleteOrder(id) {
+  if (!confirm('确定删除这条订单吗？')) return;
+  const orders = JSON.parse(localStorage.getItem('pumpkin_orders') || '[]');
+  localStorage.setItem('pumpkin_orders', JSON.stringify(orders.filter(o => o.id !== id)));
+  loadAdminOrders();
+}
+
+function exportOrders() {
+  const orders = JSON.parse(localStorage.getItem('pumpkin_orders') || '[]');
+  if (orders.length === 0) { alert('暂无订单可导出'); return; }
+  let csv = '﻿时间,产品,数量,姓名,电话,地址,备注\n';
+  orders.forEach(o => {
+    csv += [o.time, o.product, o.quantity, o.name, o.phone, o.address, o.note].map(v => '"' + (v || '').replace(/"/g, '""') + '"').join(',') + '\n';
+  });
+  const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = '南瓜订单_' + new Date().toLocaleDateString('zh-CN') + '.csv';
+  a.click(); URL.revokeObjectURL(url);
+}
+
+function clearAllOrders() {
+  if (!confirm('确定清空所有订单吗？此操作无法恢复！')) return;
+  localStorage.removeItem('pumpkin_orders');
+  loadAdminOrders();
 }
 </script>
 </body>
